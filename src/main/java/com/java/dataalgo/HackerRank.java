@@ -1,6 +1,8 @@
 package com.java.dataalgo;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class HackerRank {
     final int ASCII_START =65;
@@ -76,6 +78,12 @@ public class HackerRank {
         results.put("neg", String.format("%.6f", (double) neg / arr.size()));
         results.put("zero", String.format("%.6f", (double) zero / arr.size()));
         return results;
+    }
+
+    public List<Integer> countSort(List<Integer> arr) {
+        List<Integer> frequency  = IntStream.range(0,100).mapToObj(i -> 0).collect(Collectors.toList());
+        arr.stream().forEach(i -> frequency.set(i, frequency.get(i)+1));
+        return frequency;
     }
 
     public List<Integer> getStringFrequency(List<String> strings, List<String> queries) {
