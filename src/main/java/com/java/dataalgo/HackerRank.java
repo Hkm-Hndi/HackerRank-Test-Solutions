@@ -110,6 +110,17 @@ public class HackerRank {
     }
 
 
+    public boolean checkPermutation(int k, List<Integer> a, List<Integer> b) {
+        Collections.sort(a);
+        Collections.sort(b,Collections.reverseOrder());
+        for (int i=0; i<a.size();i++)
+            if (a.get(i)+b.get(i)<k)
+                return false;
+        return true;
+
+    }
+
+
     public long findMinXSumInList(List<Integer> arr, int elementsCount) {
         long min=0;
         arr.sort(Comparator.naturalOrder());
