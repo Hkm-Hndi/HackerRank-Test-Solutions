@@ -1,5 +1,7 @@
 package com.java.dataalgo;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -137,6 +139,56 @@ public class HackerRank {
             if (i>=0)
                 max+=arr.get(i);
         return max;
+    }
+
+
+    public String convertTime12To24(String s) throws ParseException {
+        SimpleDateFormat h24=new SimpleDateFormat("HH:mm:ss");
+        SimpleDateFormat h12=new SimpleDateFormat("hh:mm:ssa");
+        try {
+            Date date=h12.parse(s);
+            return h24.format(date).toString();
+        } catch (ParseException e) {
+            throw e;
+        }
+    }
+
+    public int countSockPairs(List<Integer> sockPerColorList) {
+        HashMap<Integer,Integer> colorsMap=new HashMap<>();
+        for (int color : sockPerColorList){
+            int currentVal= colorsMap.getOrDefault(color,0);
+            colorsMap.put(color,currentVal+1);
+        }
+        int pairsCount=0;
+        for (Integer color : colorsMap.keySet())
+            pairsCount+=colorsMap.get(color)/2;
+        return pairsCount;
+    }
+
+    public double findMedian(List<Integer> arr) {
+        arr.sort(Comparator.naturalOrder());
+        int ind = (arr.size() + 1) / 2 - 1;
+        if (arr.size()%2!=0)
+            return (arr.get(ind));
+        else
+            return ((arr.get(ind)+arr.get(ind+1))/2.0);
+    }
+
+    public int flippingMatrix(List<List<Integer>> arr) {
+        int sum=0;
+        int n=arr.size()/2;
+        for(int i = 0; i < n; i++)
+        {
+            for(int j = 0; j < n; j++)
+            {
+                int num1 = arr.get(i).get((2*n) - j - 1);
+                int num2 = arr.get(i).get(j);
+                int num3 = arr.get((2*n) - i - 1).get(j);
+                int num4 = arr.get((2*n) - i - 1).get((2*n) - j - 1);
+                sum += Math.max(num1, Math.max(num2, Math.max(num3, num4)));
+            }
+        }
+        return sum;
     }
 
 }

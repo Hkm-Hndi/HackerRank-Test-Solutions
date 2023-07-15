@@ -1,5 +1,6 @@
 package com.java.dataalgo;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -154,4 +155,51 @@ class HackerRankTest {
         List<Integer> b=new ArrayList<>(Arrays.asList(1,14,4,48,58,3,46,63,49,3,34,28,62,68,64,66,57,37,33,31,64,12,67,43,52,1,27,12,53,41,59,39,43,1,6,62,65,2,43,38,5,26,3,5,48,33,32,11,46,65,30,38,41,52,47,47,57,18,21,6,24,53,12,2,67,15,60,62,23,42,20,13,34,17,1,27,48,9,53,12,37,27,53,66,63,21,19,15,29,40,46,3,38,1,26,26,51,1,44,45,57,70,60,37,19,32,1,60,2,39,5,18,19,51,7,13,66,13,61,23,1,28,2,50,23,31,28,30,55,52,1,46,35,56,61,42,58,44,5,9,1,5,11,7,15,38));
         assertEquals(hr.checkPermutation(71, a, b), false);
     }
+
+    @Test
+    void convertTime12To24() {
+        String h12="07:05:45PM";
+        try {
+            assertEquals(hr.convertTime12To24(h12), "19:05:45");
+        }
+        catch (Exception e){
+            Assertions.fail("Exception occured: "+ e.getMessage());
+        }
+    }
+
+    @Test
+    void countSockPairs() {
+        List<Integer> sockPerColorArr=new ArrayList<>(Arrays.asList(50,49,38,49,78,36,25,96,10,67,78,58,98,8,53,1,4,7,29,6,59,93,74,3,67,47,12,85,84,40,81,85,89,70,33,66,6,9,13,67,75,42,24,73,49,28,25,5,86,53,10,44,45,35,47,11,81,10,47,16,49,79,52,89,100,36,6,57,96,18,23,71,11,99,95,12,78,19,16,64,23,77,7,19,11,5,81,43,14,27,11,63,57,62,3,56,50,9,13,45));
+        assertEquals(hr.countSockPairs(sockPerColorArr),28);
+    }
+
+    @Test
+    void countSockPairs_emptyArr() {
+        List<Integer> sockPerColorArr=new ArrayList<>();
+        assertEquals(hr.countSockPairs(sockPerColorArr),0);
+    }
+
+    @Test
+    void findMedian_oddArray() {
+       List <Integer> arr=new ArrayList<>(Arrays.asList(7,1,2,5,4,3,6));
+       assertEquals(hr.findMedian(arr),4);
+    }
+
+    @Test
+    void findMedian_evenArray() {
+        List <Integer> arr=new ArrayList<>(Arrays.asList(12,1,2,8,4,3));
+        assertEquals(hr.findMedian(arr),3.5);
+    }
+
+    @Test
+    void FlippingMatrix(){
+        List<List<Integer>> arr=new ArrayList<>(Arrays.asList(
+                Arrays.asList(112,42,114,119),
+                Arrays.asList(56,125,101,49),
+                Arrays.asList(15,78,56,43),
+                Arrays.asList(62,98,83,108)
+        ));
+        assertEquals(hr.flippingMatrix(arr), 414);
+    }
+
 }
