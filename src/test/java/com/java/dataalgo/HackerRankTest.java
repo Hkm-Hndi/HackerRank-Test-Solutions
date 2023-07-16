@@ -5,8 +5,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -132,28 +130,28 @@ class HackerRankTest {
     void countSort_ActualAsExpected() {
         List<Integer> res=hr.countSort(Arrays.asList(63,25,73,1,98,73,56,84,86,57,16,83,8,25,81,56,9,53,98,67,99,12,83,89,80,91,39,86,76,85,74,39,25,90,59,10,94,32,44,3,89,30,27,79,46,96,27,32,18,21,92,69,81,40,40,34,68,78,24,87,42,69,23,41,78,22,6,90,99,89,50,30,20,1,43,3,70,95,33,46,44,9,69,48,33,60,65,16,82,67,61,32,21,79,75,75,13,87,70,33));
         List<Integer> expectedResult=new ArrayList<>(Arrays.asList(0,2,0,2,0,0,1,0,1,2,1,0,1,1,0,0,2,0,1,0,1,2,1,1,1,3,0,2,0,0,2,0,3,3,1,0,0,0,0,2,2,1,1,1,2,0,2,0,1,0,1,0,0,1,0,0,2,1,0,1,1,1,0,1,0,1,0,2,1,3,2,0,0,2,1,2,1,0,2,2,1,2,1,2,1,1,2,2,0,3,2,1,1,0,1,1,1,0,2,2));
-        assertEquals(res.equals(expectedResult),true);
+        assertTrue(res.equals(expectedResult));
     }
 
     @Test
     void countSort_ActualNotAsExpected() {
         List<Integer> res=hr.countSort(Arrays.asList(63,25,73,1,98,73,56,84,86,57,16,83,8,25,81,56,9,53,98,67,99,12,83,89,80,91,39,86,76,85,74,39,25,90,59,10,94,32,44,3,89,30,27,79,46,96,27,32,18,21,92,69,81,40,40,34,68,78,24,87,42,69,23,41,78,22,6,90,99,89,50,30,20,1,43,3,70,95,33,46,44,9,69,48,33,60,65,16,82,67,61,32,21,79,75,75,13,87,70,33));
         List<Integer> expectedResult=new ArrayList<>(Arrays.asList(0,2,0,12,0,0,1,0,1,2,1,0,1,1,0,0,2,0,1,0,1,2,1,1,1,3,0,2,0,0,2,0,3,3,1,0,0,0,0,2,2,1,1,1,2,0,2,0,1,0,1,0,0,1,0,0,2,1,0,1,1,1,0,1,0,1,0,2,1,3,2,0,0,2,1,2,1,0,2,2,1,2,1,2,1,1,2,2,0,3,2,1,1,0,1,1,1,0,2,2));
-        assertEquals(res.equals(expectedResult),false);
+        assertFalse(res.equals(expectedResult));
     }
 
     @Test
     void checkPermutation_Permutalbe() {
         List<Integer> a=new ArrayList<>(Arrays.asList(3,1,5,4,1,5,4,4,2,3,4,4,5,4,4,2,4,5,4,2,4,1,1,1,2,3,4,3,4,2,2,2,5,1,1,1,2,1,3,5,3,4,4,4,5,1,5,4,5,5,2,2,3,5,4,3,3,2,4,2,5,4,4,5,3,4,2,3,3,3,5,2,5,4,4,1,5,1,1,1,4,2,5,5,2,1,3,3,1,1,5,5,5));
         List<Integer> b=new ArrayList<>(Arrays.asList(9,5,7,5,7,0,6,9,4,1,11,14,7,2,2,13,14,10,10,1,5,9,12,2,4,5,11,2,8,10,7,7,11,11,7,5,4,7,8,11,13,6,8,2,3,6,11,5,10,5,9,8,6,13,8,12,5,7,14,7,4,5,0,9,3,6,8,6,10,11,10,3,2,10,10,8,6,11,10,6,6,14,3,10,3,10,2,0,4,8,14,11,1));
-        assertEquals(hr.checkPermutation(5, a, b), true);
+        assertTrue(hr.checkPermutation(5, a, b));
     }
 
     @Test
     void checkPermutation_NotPermutalbe() {
         List<Integer> a=new ArrayList<>(Arrays.asList(15,58,59,6,58,69,18,43,15,17,63,13,21,33,1,1,68,68,24,18,33,33,27,42,59,24,2,47,67,41,53,3,43,31,34,66,33,48,56,1,53,31,30,47,64,23,43,28,32,3,19,4,11,64,9,24,60,68,1,19,49,63,37,12,43,48,42,63,63,23,47,33,28,37,15,19,2,40,64,8,29,65,8,11,32,51,19,59,7,5,8,64,24,64,19,47,3,9,53,42,8,53,42,4,62,22,54,22,19,47,57,1,64,68,1,3,37,13,54,57,42,26,21,39,65,27,61,53,20,1,39,1,29,22,43,11,66,18,1,14,69,58,32,24,10,31));
         List<Integer> b=new ArrayList<>(Arrays.asList(1,14,4,48,58,3,46,63,49,3,34,28,62,68,64,66,57,37,33,31,64,12,67,43,52,1,27,12,53,41,59,39,43,1,6,62,65,2,43,38,5,26,3,5,48,33,32,11,46,65,30,38,41,52,47,47,57,18,21,6,24,53,12,2,67,15,60,62,23,42,20,13,34,17,1,27,48,9,53,12,37,27,53,66,63,21,19,15,29,40,46,3,38,1,26,26,51,1,44,45,57,70,60,37,19,32,1,60,2,39,5,18,19,51,7,13,66,13,61,23,1,28,2,50,23,31,28,30,55,52,1,46,35,56,61,42,58,44,5,9,1,5,11,7,15,38));
-        assertEquals(hr.checkPermutation(71, a, b), false);
+        assertFalse(hr.checkPermutation(71, a, b));
     }
 
     @Test
@@ -201,5 +199,41 @@ class HackerRankTest {
         ));
         assertEquals(hr.flippingMatrix(arr), 414);
     }
+
+    @Test
+    void getPageFlipsCount_firstPage(){
+        assertEquals(hr.getPageFlipsCount(15,1),0);
+    }
+
+    @Test
+    void getPageFlipsCount_lastPage_lastPageOdd(){
+        assertEquals(hr.getPageFlipsCount(15,15),0);
+    }
+
+    @Test
+    void getPageFlipsCount_lastPage_lastPageEven(){
+        assertEquals(hr.getPageFlipsCount(16,16),0);
+    }
+
+    @Test
+    void getPageFlipsCount_internalPageOdd_lastPageEven(){
+        assertEquals(hr.getPageFlipsCount(16,15),1);
+    }
+
+    @Test
+    void getPageFlipsCount_internalPageEven_lastPageEven(){
+        assertEquals(hr.getPageFlipsCount(16,14),1);
+    }
+
+    @Test
+    void getPageFlipsCount_internalPageOdd_lastPageOdd(){
+        assertEquals(hr.getPageFlipsCount(15,13),1);
+    }
+
+    @Test
+    void getPageFlipsCount_internalPageEven_lastPageOdd(){
+        assertEquals(hr.getPageFlipsCount(15,14),0);
+    }
+
 
 }

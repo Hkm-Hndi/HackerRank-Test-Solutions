@@ -75,7 +75,7 @@ public class HackerRank {
                 zero++;
             else
                 neg++;
-        HashMap<String,String> results=new HashMap<String, String>();
+        HashMap<String,String> results=new HashMap<>();
         results.put("pos", String.format("%.6f", (double) pos / arr.size()));
         results.put("neg", String.format("%.6f", (double) neg / arr.size()));
         results.put("zero", String.format("%.6f", (double) zero / arr.size()));
@@ -189,6 +189,14 @@ public class HackerRank {
             }
         }
         return sum;
+    }
+
+    public int getPageFlipsCount(int n, int p) {
+        int f2b=p/2;
+        int b2f=(n-p)/2;
+        if (n%2==0 && p%2!=0)
+            b2f++;
+        return Math.min(f2b,b2f);
     }
 
 }
