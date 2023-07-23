@@ -118,12 +118,12 @@ class HackerRankTest {
     }
     @Test
     void isPangrams_true() {
-        assertEquals(hr.isPangrams("We promptly judged antique ivory buckles for the next prize"), "pangram");
+        assertTrue(hr.isPangrams("We promptly judged antique ivory buckles for the next prize"));
     }
 
     @Test
     void isPangrams_false() {
-        assertEquals(hr.isPangrams("We promptly judged antique ivory buckles for the prize"), "not pangram");
+        assertFalse(hr.isPangrams("We promptly judged antique ivory buckles for the prize"));
     }
 
     @Test
@@ -235,5 +235,21 @@ class HackerRankTest {
         assertEquals(hr.getPageFlipsCount(15,14),0);
     }
 
+    @Test
+    void encryptUsingCaesarCipher(){
+       assertEquals(hr.encryptUsingCaesarCipher("abcdz+-46Z",1), "bcdea+-46A");
+    }
+
+    @Test
+    void calculateSlidingArrUnfairnessUsingLists(){
+        List<Integer> arr=new ArrayList<>(Arrays.asList(3,10,2,20,100,4,200,40,1,30));
+        assertEquals(hr.calculateSlidingArrUnfairnessUsingLists(4,arr ), 3);
+    }
+
+    @Test
+    void calculateSlidingArrUnfairness(){
+        List<Integer> arr=new ArrayList<>(Arrays.asList(3,10,2,20,100,4,200,40,1,30));
+        assertEquals(hr.calculateSlidingArrUnfairness(4,arr ), 3);
+    }
 
 }

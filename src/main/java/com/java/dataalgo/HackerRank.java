@@ -7,8 +7,9 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class HackerRank {
-    final int ASCII_START =65;
-    final int ASCII_END =90;
+    final int ASCII_CAPITAL_LETTERS_START =65;
+    final int ASCII_CAPITAL_LETTERS_END =90;
+
 
     public int calcDiagonalDifference(List<List<Integer>> arr) {
         int primaryDiagonal=0;
@@ -102,13 +103,13 @@ public class HackerRank {
     }
 
     //A pangram is a string that contains every letter of the alphabet.
-    public String isPangrams(String s) {
-        for (int i = ASCII_START; i<= ASCII_END; i++) {
+    public boolean isPangrams(String s) {
+        for (int i = ASCII_CAPITAL_LETTERS_START; i<= ASCII_CAPITAL_LETTERS_END; i++) {
             String c = String.valueOf((char) i);
             if (!s.toUpperCase().contains(c))
-                return "not pangram";
+                return false;
         }
-      return "pangram";
+      return true;
     }
 
 
@@ -197,6 +198,42 @@ public class HackerRank {
         if (n%2==0 && p%2!=0)
             b2f++;
         return Math.min(f2b,b2f);
+    }
+
+
+    public String encryptUsingCaesarCipher(String s, int k) {
+        String lettersL="abcdefghijklmnopqrstuvwxyz";
+        String lettersU="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String cipheredString="";
+        for (int i=0; i<s.length();i++) {
+            if (lettersL.indexOf(s.charAt(i))!=-1)
+                cipheredString+= lettersL.charAt((lettersL.indexOf(s.charAt(i))+k)%26);
+            else if (lettersU.indexOf(s.charAt(i))!=-1)
+                cipheredString+= lettersU.charAt((lettersU.indexOf(s.charAt(i))+k)%26);
+            else
+            cipheredString+=s.charAt(i);
+
+        }
+        return cipheredString;
+    }
+
+    //Using Lists (not optimal)
+    public int calculateSlidingArrUnfairnessUsingLists(int k, List<Integer> arr) {
+        arr.sort(Comparator.naturalOrder());
+        List<Integer> unfairness=new ArrayList<>();
+        for (int i=0; i+k-1<arr.size();i++)
+            unfairness.add(arr.get(i+k-1)-arr.get(i));
+        return unfairness.stream().min(Integer::compareTo).get();
+    }
+
+    //memory usage and time complexity optimised
+    public int calculateSlidingArrUnfairness(int k, List<Integer> arr) {
+        arr.sort(Comparator.naturalOrder());
+        int unfairness=arr.get(k-1)-arr.get(0);
+        for (int i=1; i+k-1<arr.size();i++)
+            if (arr.get(i+k-1)-arr.get(i)<unfairness)
+                unfairness=arr.get(i+k-1)-arr.get(i);
+        return unfairness;
     }
 
 }
